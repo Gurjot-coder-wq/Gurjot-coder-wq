@@ -1,0 +1,112 @@
+//My c++ Rock Paper scissors program
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+class Rock_Papre_Scissor
+{
+protected:
+    string UserInput;
+    string Result;
+
+public:
+    void getInput(string Input)
+    {
+        UserInput = Input;
+    }
+
+    void showData(void)
+    {
+        cout << "The user input was: " << UserInput << endl;
+    }
+
+    void getCompinput()
+    {
+        string RPS[3] = {"Rock", "Paper", "Scissors"};
+        int move = rand() % 3; // The value(0, 1 or 2) will be stored in move varible
+        Result = RPS[move];//Result will store the Value of RPS at index move(0, 1 or 2)
+        if (move == 0)
+        {
+            cout << "The computer input was " << Result << endl;
+        }
+        else if (move = 1)
+        {
+            cout << "The computer input was " << Result << endl;
+        }
+        else
+        {
+            cout << "The computer input was " << Result << endl;
+        }
+    }
+
+    void CheckValid()//TO check that the User has given us the correct input
+    {
+        if (UserInput != "Rock" && UserInput != "Paper" && UserInput != "Scissors")
+        {
+            cout << "Invalid input!" << endl
+                 << "You have to restart" << endl;
+            exit(0);
+        }
+    }
+
+    void Checkwin()
+    {
+        if (Result == UserInput)
+        {
+            cout << "Draw!" << endl;
+        }
+
+        if (Result == "Rock" && UserInput == "Paper")
+        {
+            cout << "You win!" << endl
+                 << "Paper wins on Rock";
+        }
+
+        if (Result == "Paper" && UserInput == "Rock")
+        {
+            cout << "Computer wins!" << endl
+                 << "Paper wins on rock";
+        }
+
+        if (Result == "Rock" && UserInput == "Scissors")
+        {
+            cout << "Computer wins!" << endl
+                 << "Rock wins on Scissors";
+        }
+
+        if (Result == "Scissors" && UserInput == "Rock")
+        {
+            cout << "You win!" << endl
+                 << "Rock wins on Scissors";
+        }
+
+        if (Result == "Paper" && UserInput == "Scissors")
+        {
+            cout << "You win!" << endl
+                 << "Scissors wins on paper";
+        }
+
+        if (Result == "Scissors" && UserInput == "Paper")
+        {
+            cout << "Computer wins!" << endl
+                 << "Scissors wins on paper";
+        }
+    }
+};
+
+int main()
+{
+    srand(time(0));//TO get the random value at he beigining of the program
+    string Player1input;
+    cout << "Enter Rock, Paper or Scissor" << endl;
+    cin >> Player1input;
+
+    Rock_Papre_Scissor rps;
+    rps.getInput(Player1input);
+    rps.CheckValid();
+    rps.showData();
+    rps.getCompinput();
+    rps.Checkwin();
+    return 0;
+}
