@@ -1,0 +1,159 @@
+//My c++ Casino game
+#include <iostream>
+#include <ctime>
+#include<conio.h>
+using namespace std;
+
+class Casino
+{
+    string difficulty;
+    int num;
+    float money;
+    int Random_number;
+
+public:
+    void setDifficulty(string dif)
+    {
+        if (dif != "Easy" && dif != "Medium" && dif != "Hard")
+        {
+            cout << "Error: Inavalid difficulty level!!" << endl
+                 << "You have to restart the game" << endl;
+            exit(0);
+        }
+        difficulty = dif;
+    }
+
+    void getDifficulty(void)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            cout << "   ";
+        }
+        cout << "Difficulty: " << difficulty << endl
+             << endl;
+    }
+    void playGame(void)
+    {
+        if (difficulty == "Easy")
+        {
+            cout << "Enter a number between 0 and 10" << endl;
+            cin >> num;
+
+            if (num > 10 || num < 0)
+            {
+                cout << "Error: You have entered the Invalid number!" << endl
+                     << "You have to restart the game!" << endl;
+                exit(0);
+            }
+
+            cout << "Enter your betting amount:" << endl;
+            cin >> money;
+            cout << "If you win you will get Rs " << money * 3 << endl;
+
+            Random_number = rand() % 11; // To get the random number
+            // between 0 and 10
+
+            cout << "The number is " << Random_number << endl;
+            if (Random_number == num)
+            {
+                cout << "You win!" << endl;
+                cout << "Your winnig amount is " << money * 3 << endl;
+            }
+            else
+                cout << "You lose!" << endl
+                     << "You lose Rs " << money << " !";
+        }
+
+        if (difficulty == "Medium")
+        {
+            cout << "Enter a number between 0 and 20" << endl;
+            cin >> num;
+
+            if (num > 20 || num < 0)
+            {
+                cout << "Error: You have entered the Invalid number!" << endl
+                     << "You have to restart the game!" << endl;
+                exit(0);
+            }
+
+            cout << "Enter your betting amount:" << endl;
+            cin >> money;
+            cout << "If you win you will get Rs " << money * 5 << endl;
+
+            Random_number = rand() % 21; // To get the random number
+            // between 0 and 20
+
+            cout << "The number is " << Random_number << endl;
+            if (Random_number == num)
+            {
+                cout << "You win!" << endl;
+                cout << "Your winnig amount is " << money * 5;
+            }
+            else
+                cout << "You lose!" << endl
+                     << "You lose Rs " << money << " !" << endl;
+        }
+
+        if (difficulty == "Hard")
+        {
+            cout << "Enter a number between 0 and 30" << endl;
+            cin >> num;
+
+            if (num > 30 || num < 0)
+            {
+                cout << "Error: You have entered the Invalid number!" << endl
+                     << "You have to restart the game!" << endl;
+                exit(0);
+            }
+
+            cout << "Enter your betting amount:" << endl;
+            cin >> money;
+            cout << "If you win you will get Rs " << money * 10 << endl;
+
+            Random_number = rand() % 31; // To get the random number
+            // between 0 and 30
+
+            cout << "The number is " << Random_number << endl;
+            if (Random_number == num)
+            {
+                cout << "You win!" << endl;
+                cout << "Your winnig amount is " << money * 10;
+            }
+            else
+                cout << "You lose!" << endl
+                     << "You lose Rs " << money << " !" << endl;
+        }
+    }
+};
+int main()
+{
+    string yn;
+    do
+    {
+        system("cls");
+        for (int i = 0; i < 10; i++)
+        {
+            cout << "   ";
+        }
+        cout << " CASINO " << endl
+             << endl;
+        srand(time(0)); // To seed the random number generator
+        string difficulty;
+        cout << "Enter the difficulty level(Easy, Medium or Hard):" << endl;
+        cin >> difficulty;
+        Casino C;
+        system("cls");
+        C.setDifficulty(difficulty);
+        C.getDifficulty();
+        C.playGame();
+        cout<<endl<<"Press any key to continue";
+        getch();
+        system("cls");
+        cout << "Want to play again?(Yes or No):";
+        cin >> yn;
+    } while (yn != "No");
+    system("cls");
+    cout << "BYE BYE!!" << endl;
+    cout << "Have a good day!";
+    return 0;
+}
