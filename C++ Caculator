@@ -1,0 +1,197 @@
+//My c++ Simple and Scientific calculator project
+#include <iostream>
+#include <cmath>
+#include <conio.h>
+using namespace std;
+
+class Simplecalculator
+{
+    char Simplefunctions;
+    float a, b;
+
+public:
+    void setValueTypeSim(char Cal)
+    {
+        Simplefunctions = Cal;
+    }
+
+    void setValuenumsSim(float n1, float n2)
+    {
+        a = n1;
+        b = n2;
+    }
+    void getOutputSim()
+    {
+        switch (Simplefunctions)
+        {
+        case '+':
+        {
+            cout << "The sum of " << a << " and " << b << " is " << a + b << endl;
+            break;
+        }
+
+        case '-':
+        {
+            cout << "The difference between " << a << " and " << b << " is " << (a > b ? a - b : b - a) << endl;
+            break;
+        }
+
+        case '*':
+        {
+            cout << "The product of " << a << " and " << b << " is " << a * b << endl;
+            break;
+        }
+
+        case '/':
+        {
+            if (b != 0)
+                cout << "The dision between " << a << " and " << b << " is " << (a > b ? a / b : b / a) << endl;
+
+            else
+                cout << "Error: division with 0!" << endl;
+            break;
+        }
+        }
+    }
+};
+
+class SceintificCalculator
+{
+    string Scientificfunctions;
+    double a;
+
+public:
+    void setValueTypeSci(string Cal)
+    {
+        Scientificfunctions = Cal;
+    }
+
+    void setValuenumsSci(int n1)
+    {
+        a = n1;
+    }
+
+    void getValueSci()
+    {
+        if (Scientificfunctions == "cos")
+        {
+            cout << "The value of cos(" << a << ") is " << cos(a) << endl;
+        }
+
+        else if (Scientificfunctions == "sin")
+        {
+            cout << "The value of sin(" << a << ") is " << sin(a) << endl;
+        }
+
+        else if (Scientificfunctions == "tan")
+        {
+            cout << "The value of tan(" << a << ") is " << tan(a) << endl;
+        }
+
+        else if (Scientificfunctions == "exp")
+        {
+            cout << "The Exponential of " << a << " is " << exp(a) << endl;
+        }
+    }
+};
+
+class HybridCalculator : public Simplecalculator, public SceintificCalculator
+{
+    string Typocal;
+
+public:
+    void Cal(string Tocal)
+    {
+        Typocal = Tocal;
+    }
+
+    void process()
+    {
+        if (Typocal == "Scientific")
+            getValueSci();
+
+        if (Typocal == "Simple")
+            getOutputSim();
+    }
+};
+int main()
+{
+    string yn;
+    do
+    {
+        string Typocal;
+        string Func;
+        char Function1;
+        int n1, n2;
+        system("cls");
+        cout << "On which type of calculator do you want to work?(Simple or Scientific):" << endl;
+        cin >> Typocal;
+
+        if (Typocal == "Simple")
+        {
+            if (Func != "+" && Func != "-" && Func != "/" && Func != "*")
+            {
+                cout << "Cannot find " << Func << " function!" << endl;
+                cout << "Press any key to continue!";
+                getch();
+                continue;
+            }
+            system("cls");
+            cout << "Enter any one function(+, -, * or /):" << endl;
+            cin >> Function1;
+
+            cout << "Enter first number: ";
+            cin >> n1;
+
+            cout << "Enter second number: ";
+            cin >> n2;
+            HybridCalculator Si;
+            Si.setValueTypeSim(Function1);
+            Si.setValuenumsSim(n1, n2);
+            Si.Cal(Typocal);
+            Si.process();
+        }
+
+        else if (Typocal == "Scientific")
+        {
+            system("cls");
+            cout << "Enter any one function(sin, cos, tan or exp):" << endl;
+            cin >> Func;
+            if (Func != "sin" && Func != "cos" && Func != "tan" && Func != "exp")
+            {
+                cout << "Cannot find " << Func << " function!" << endl;
+                cout << "Press any key to continue!";
+                getch();
+                continue;
+            }
+            cout << "Enter a number: ";
+            cin >> n1;
+
+            HybridCalculator Sci;
+            Sci.setValueTypeSci(Func);
+            Sci.setValuenumsSci(n1);
+            Sci.Cal(Typocal);
+            Sci.process();
+        }
+
+        else
+        {
+            cout << "Cannot found " << Typocal << " type of Calculator!" << endl;
+            cout<<"Press any key to continue!";
+            getch();
+            continue;
+        }
+
+        cout << "Want to try again?(yes or no)" << endl;
+        cin >> yn;
+    } while (yn != "no");
+    system("cls");
+    cout << "BB BB BB       YY     YY     EE EE EE    " << endl;
+    cout << "BB     BB       YY   YY      EE   " << endl;
+    cout << "BB BB BB          YY         EE EE EE   " << endl;
+    cout << "BB     BB         YY         EE    " << endl;
+    cout << "BB BB BB          YY         EE EE EE    " << endl
+         << endl;
+    cout << "Have a good time!";
+    return 0;
+}
